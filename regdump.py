@@ -22,7 +22,7 @@ else:
 	pd.options.display.max_colwidth = args.truncate
 
 xml = unicode(sh.hivexml(infile))
-xml = xml.encode('utf8', 'replace')
+#xml = xml.encode('utf8', 'replace')
 
 data = []
 
