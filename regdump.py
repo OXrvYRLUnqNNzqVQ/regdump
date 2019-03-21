@@ -52,4 +52,4 @@ for i in get_root_elements(xml):
 	data.append(row)
 
 df = pd.DataFrame(data)
-print(df.to_string(index=False, header=False))
+print(df.to_string(index=False, header=False).encode('utf-8').strip())
