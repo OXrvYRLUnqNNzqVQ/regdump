@@ -21,8 +21,8 @@ if args.truncate == 0:
 else:
 	pd.options.display.max_colwidth = args.truncate
 
-xml = str(sh.hivexml(infile))
-
+xml = unicode(sh.hivexml(infile))
+xml = xml.encode('utf8', 'replace')
 
 data = []
 
@@ -45,10 +45,10 @@ for i in get_root_elements(xml):
 	type_ = i.get('type') if i.get('type') is not None else "(value not set)"
 	data_ = i.get('value') if i.get('type') is not None else "(value not set)"
 	if str(type_)=="binary": data_ = hashlib.sha224(str(data_)).hexdigest()
-	if args.k: row.append(str(get_path(i))) 
-	if args.n: row.append(str(name_)) 
-	if args.t: row.append(str(type_)) 
-	if args.d: row.append(str(data_)) 
+	if args.k: row.append((get_path(i))) 
+	if args.n: row.append((name_)) 
+	if args.t: row.append((type_)) 
+	if args.d: row.append((data_)) 
 	data.append(row)
 
 df = pd.DataFrame(data)
